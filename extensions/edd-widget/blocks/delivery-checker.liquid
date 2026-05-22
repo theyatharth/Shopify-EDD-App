@@ -1,0 +1,60 @@
+<div class="edd-widget" style="margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 8px;">
+  <h4>Check Delivery Estimate</h4>
+  <input type="text" id="pincode-input" placeholder="Enter PIN Code" style="padding: 8px; width: 60%;" />
+  <button id="check-delivery-btn" style="padding: 8px 15px; background: #000; color: #fff; cursor: pointer;">Check</button>
+  <div id="edd-result" style="margin-top: 10px; font-weight: bold;"></div>
+</div>
+
+<script>
+  // 1. Grab the dynamic weight from Shopify
+  let productWeightGrams = {{ product.selected_or_first_available_variant.weight | default: 1000 }};
+  
+  // 2. The Failsafe: If Shopify explicitly says the weight is 0, force it to 1000 grams (1kg)
+  if (productWeightGrams === 0) {
+    productWeightGrams = 1000; 
+  }
+  
+  // 3. Convert to Kilograms (Shiprocket requires KG)
+  const productWeightKg = (productWeightGrams / 1000).toFixed(2);
+
+  document.getElementById('check-delivery-btn').addEventListener('click', async () => {
+    
+    // 3. Grab the dynamic pincode from the input box
+    const pincode = document.getElementById('pincode-input').value.trim();
+    const resultDiv = document.getElementById('edd-result');
+    
+    if(!pincode || pincode.length !== 6) {
+      resultDiv.innerText = "Please enter a valid 6-digit pincode.";
+      resultDiv.style.color = "red";
+      return;
+    }
+
+    resultDiv.innerText = "Checking...";
+    resultDiv.style.color = "black";
+
+    try {
+      // 4. Pass BOTH the dynamic pincode and dynamic weight to your backend
+      const response = await fetch(`/apps/shiprocket-edd/delivery?pincode=${pincode}&weight=${productWeightKg}`);
+      const data = await response.json();
+
+      if (data.success) {
+        resultDiv.innerText = `🚚 Delivery by ${data.etd} (${data.days} days)`;
+        resultDiv.style.color = "green";
+      } else {
+        resultDiv.innerText = data.message || "❌ Delivery unavailable for this pincode.";
+        resultDiv.style.color = "red";
+      }
+    } catch (err) {
+      resultDiv.innerText = "Error connecting to delivery service.";
+      resultDiv.style.color = "red";
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Delivery Checker",
+  "target": "section",
+  "settings": []
+}
+{% endschema %}
