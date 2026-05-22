@@ -1,1 +1,0 @@
-# Shopify-EDD-App
