@@ -57,10 +57,17 @@ export async function checkDeliveryServiceability({
     }
   );
 
-  const data = response.data.data;
+  const data = response.data?.data;
 
-  const recommendedCourierId =
-    data.shiprocket_recommended_courier_id;
+// THE NEW SAFETY NET: Check if 'data' actually exists before reading it
+if (!data) {
+  return {
+    success: false,
+    message: "Invalid response or unserviceable pincode",
+  };
+}
+
+const recommendedCourierId = data.shiprocket_recommended_courier_id;
 
   const courier =
     data.available_courier_companies.find(
