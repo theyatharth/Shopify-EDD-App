@@ -38,15 +38,17 @@
       const data = await response.json();
 
       if (data.success) {
-        resultDiv.innerText = `🚚 Delivery by ${data.etd} (${data.days} days)`;
+        resultDiv.innerText = `🚚 Estimated Delivery by ${data.etd} (${data.days} days)`;
         resultDiv.style.color = "green";
       } else {
         resultDiv.innerText = data.message || "❌ Delivery unavailable for this pincode.";
         resultDiv.style.color = "red";
       }
     } catch (err) {
-      resultDiv.innerText = "Error connecting to delivery service.";
-      resultDiv.style.color = "red";
+      // CRASH PATH: Customer-friendly fallback if the EC2 server is down
+      console.error("Delivery API Error:", err);
+      resultDiv.innerText = "⚠️ Delivery estimates are temporarily unavailable. Please proceed to checkout to see options.";
+      resultDiv.style.color = "#d9534f";
     }
   });
 </script>
