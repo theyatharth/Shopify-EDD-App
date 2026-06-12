@@ -2,7 +2,7 @@
 
 client_id = "87c7a57117d9151cbd0be4bf5fca170f"
 name = "Shiprocket EDD"
-application_url = "https://shprod.platinum-infotech.com"
+application_url = "https://shopify.platinuminfo.tech"
 embedded = true
 
 [build]
@@ -51,6 +51,6 @@ name = "Description"
 type = "multi_line_text_field"
 
 [app_proxy]
-url = "https://shprod.platinum-infotech.com/api"
+url = "https://shopify.platinuminfo.tech/api"
 subpath = "shiprocket-edd"
 prefix = "apps"
