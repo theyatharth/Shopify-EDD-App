@@ -2,7 +2,7 @@
 
 client_id = "4e174790ac552157607ea1b2761d6cfb"
 name = "Shiprocket-EDD"
-application_url = "https://integrations.platinuminfo.tech"
+application_url = "https://integrations.platinuminfo.tech/shiprocket-edd"
 embedded = true
 
 [build]
@@ -26,10 +26,10 @@ optional_scopes = [ ]
 use_legacy_install_flow = false
 
 [auth]
-redirect_urls = [ "https://integrations.platinuminfo.tech/auth/callback" ]
+redirect_urls = [ "https://integrations.platinuminfo.tech/shiprocket-edd/auth/callback" ]
 
 [app_proxy]
-url = "https://integrations.platinuminfo.tech/api"
+url = "https://integrations.platinuminfo.tech/shiprocket-edd/api"
 subpath = "shiprocket-edd"
 prefix = "apps"
 
