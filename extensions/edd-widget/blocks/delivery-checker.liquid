@@ -1,8 +1,65 @@
-<div class="edd-widget" style="margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 8px;">
+<style>
+  /* 1. Container Styling: Added a max-width so it stops stretching */
+  .edd-widget {
+    margin: 20px 0; 
+    padding: 15px 0; 
+    border: none; 
+    border-top: 1px solid #eaeaea; 
+    border-bottom: 1px solid #eaeaea; 
+    max-width: 400px; /* This keeps the widget compact and neat */
+  }
+
+  .edd-widget h4 {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+  }
+
+  /* 2. Input Group: Keeps them side-by-side but constrained */
+  .edd-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .edd-input-group input {
+    width: 200px; /* Fixed width instead of stretching infinitely */
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+  }
+
+  /* 3. Button Styling: Matches your "Buy It Now" button */
+  .edd-input-group button {
+    padding: 10px 20px;
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+    border: 1px solid #000; /* Clean black outline */
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+
+  /* On hover, it smoothly inverts to black */
+  .edd-input-group button:hover {
+    background-color: #000 !important;
+  color: #ffffff !important;
+  }
+
+  #edd-result {
+    margin-top: 10px;
+    font-size: 0.9em;
+  }
+</style>
+
+<div class="edd-widget">
   <h4>Check Delivery Estimate</h4>
-  <input type="text" id="pincode-input" placeholder="Enter PIN Code" style="padding: 8px; width: 60%;" />
-  <button id="check-delivery-btn" style="padding: 8px 15px; background: #000; color: #fff; cursor: pointer;">Check</button>
-  <div id="edd-result" style="margin-top: 10px; font-weight: bold;"></div>
+  <div class="edd-input-group">
+    <input type="text" id="pincode-input" placeholder="Enter PIN Code" maxlength="6" />
+    <button id="check-delivery-btn">Check</button>
+  </div>
+  <div id="edd-result"></div>
 </div>
 
 <script>
