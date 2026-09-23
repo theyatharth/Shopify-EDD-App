@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "4e174790ac552157607ea1b2761d6cfb"
-name = "Shiprocket EDD"
+name = "Shiprocket-EDD"
 application_url = "https://integrations.platinuminfo.tech"
 embedded = true
 
@@ -21,10 +21,17 @@ api_version = "2026-07"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_products,write_metaobjects,write_metaobject_definitions,read_script_tags,write_script_tags"
+scopes = "write_metaobject_definitions,write_metaobjects,write_products,read_script_tags,write_script_tags"
+optional_scopes = [ ]
+use_legacy_install_flow = false
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [ "https://integrations.platinuminfo.tech/auth/callback" ]
+
+[app_proxy]
+url = "https://integrations.platinuminfo.tech/api"
+subpath = "shiprocket-edd"
+prefix = "apps"
 
 [product.metafields.app.demo_info]
 type = "single_line_text_field"
@@ -49,8 +56,3 @@ required = true
 [metaobjects.app.example.fields.description]
 name = "Description"
 type = "multi_line_text_field"
-
-[app_proxy]
-url = "https://integrations.platinuminfo.tech/api"
-subpath = "shiprocket-edd"
-prefix = "apps"
