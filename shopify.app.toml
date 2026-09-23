@@ -30,7 +30,7 @@ redirect_urls = [ "https://integrations.platinuminfo.tech/shiprocket-edd/auth/ca
 
 [app_proxy]
 url = "https://integrations.platinuminfo.tech/shiprocket-edd/api"
-subpath = "shiprocket-edd"
+subpath = "shiprocket-edd-v2"
 prefix = "apps"
 
 [product.metafields.app.demo_info]

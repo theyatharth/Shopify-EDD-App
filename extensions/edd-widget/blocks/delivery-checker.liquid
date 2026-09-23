@@ -91,7 +91,7 @@
 
     try {
       // 4. Pass BOTH the dynamic pincode and dynamic weight to your backend
-      const response = await fetch(`/apps/shiprocket-edd/delivery?pincode=${pincode}&weight=${productWeightKg}`);
+      const response = await fetch(`/apps/shiprocket-edd-v2/delivery?pincode=${pincode}&weight=${productWeightKg}`);
       const data = await response.json();
 
       if (data.success) {
